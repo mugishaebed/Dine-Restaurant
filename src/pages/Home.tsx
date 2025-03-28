@@ -250,16 +250,63 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* Call to Action */}
-      <section className="text-center py-20 bg-[#f9f9f9]">
-        <h2 className="text-3xl font-bold font-['League_Spartan'] mb-6">
-          Ready to make a reservation?
-        </h2>
-        <button className="cta-button bg-[#9e7f66] text-white px-8 py-4 uppercase text-sm tracking-wider font-['League_Spartan']">
-          Book a Table
-        </button>
-      </section>
+
+     {/* Call to action */}
+      <section className="relative py-20 px-6 md:px-24 text-white">
+  <div
+    className="absolute inset-0 z-0"
+    style={{
+      backgroundImage: "url('/images/homepage/ready-bg-desktop@2x.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+  >
+    <div className="absolute inset-0 bg-black opacity-70"></div>
+  </div>
+
+  {/* Content */}
+  <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+    {/* Left - Heading */}
+    <h2 className="text-3xl md:text-4xl font-bold font-['League_Spartan'] text-center md:text-left">
+      Ready to make a reservation?
+    </h2>
+
+    {/* Right - Button */}
+    <button className="px-8 py-4 uppercase text-sm tracking-widest font-['League_Spartan'] border border-white text-white bg-transparent hover:bg-white hover:text-black transition duration-300">
+      Book a Table
+    </button>
+  </div>
+</section>
+
+
+
+{/* Footer */}
+<footer className="bg-[#111111] text-white px-6 md:px-24 py-16 flex flex-col lg:flex-row justify-between items-start lg:items-center">
+  {/* Left - dine logo */}
+  <h1 className="font-['League_Spartan'] text-[36px] font-bold mb-10 lg:mb-0">
+    dine
+  </h1>
+
+  {/* Center - info blocks */}
+  <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 mx-auto text-sm tracking-widest font-['League_Spartan'] text-center lg:text-left">
+    {/* Address */}
+    <div className="space-y-2">
+      <p className="uppercase">Marthwaite, Sedbergh</p>
+      <p className="uppercase">Cumbria</p>
+      <p>+00 44 123 4567</p>
     </div>
+
+    {/* Open Times */}
+    <div className="space-y-2">
+      <p className="uppercase">Open Times</p>
+      <p>Mon - Fri: 09:00 AM - 10:00 PM</p>
+      <p>Sat - Sun: 09:00 AM - 11:30 PM</p>
+    </div>
+  </div>
+</footer>
+
+    </div>
+
   );
 };
 
