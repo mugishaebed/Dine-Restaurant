@@ -1,6 +1,38 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+
+type EventKey = 'family' | 'special' | 'social';
 
 const Home = () => {
+  const [activeEvent, setActiveEvent] = useState<EventKey>('family');
+
+  const eventData: Record<EventKey, {
+    title: string;
+    image: string;
+    description: string;
+  }> = {
+    family: {
+      title: 'Family Gathering',
+      image: '/images/homepage/family-gathering-desktop.jpg',
+      description:
+        'We love catering for entire families. Please bring everyone along for a special meal with your loved ones. We’ll provide a memorable experience for all.',
+    },
+    special: {
+      title: 'Special Events',
+      image: '/images/homepage/special-events-desktop@2x.jpg',
+      description:
+        'Whether it’s a romantic dinner or special date you’re celebrating with others we’ll look after you. We’ll be sure to mark your special date with an unforgettable meal.',
+    },
+    social: {
+      title: 'Social Events',
+      image: '/images/homepage/social-events-desktop@2x.jpg',
+      description:
+        'Are you looking to have a larger social event? No problem! We’re more than happy to cater for big parties. We’ll work with you to make your event a hit with everyone.',
+    },
+  };
+
+
   return (
     <div className="p-0 m-0 overflow-x-hidden">
       {/* Hero Section */}
@@ -225,28 +257,46 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* Events Section */}
+
+      {/* Events Section - Dynamic Tabs */}
       <section className="px-6 md:px-24 py-20">
         <div className="flex flex-col md:flex-row items-center gap-12">
           <img
-            className="w-full md:w-1/2 object-cover"
-            src="/images/homepage/family-gathering-desktop.jpg"
-            alt="Family gathering"
+            className="w-full md:w-1/2 object-cover shadow-lg"
+            src={eventData[activeEvent].image}
+            alt={eventData[activeEvent].title}
           />
+
           <div className="md:w-1/2 space-y-6">
             <h2 className="text-3xl font-bold font-['League_Spartan'] text-[#111]">
-              Family Gathering
+              {eventData[activeEvent].title}
             </h2>
             <p className="text-sm font-light font-['League_Spartan'] max-w-md">
-              We love catering for entire families. Please bring everyone along
-              for a special meal with your loved ones. We’ll provide a memorable
-              experience for all.
+              {eventData[activeEvent].description}
             </p>
             <Link to="/booking">
-              <button className="cta-button bg-[#9e7f66] text-white px-6 py-3 uppercase text-sm tracking-wider font-['League_Spartan']">
+              <button className="bg-black text-white px-6 py-3 uppercase text-sm tracking-wider font-['League_Spartan'] hover:bg-[#333] transition">
                 Book a Table
               </button>
             </Link>
+
+            <div className="mt-10 space-y-2">
+              {Object.keys(eventData).map((key) => (
+                <div
+                  key={key}
+                  onClick={() => setActiveEvent(key as EventKey)}
+
+                  className={`uppercase text-sm tracking-widest font-['League_Spartan'] cursor-pointer ${
+                    activeEvent === key
+                      ? "font-bold text-black border-l-[2px] border-[#9e7f66] pl-4"
+                      : "text-gray-400 pl-4 hover:text-black"
+                  }`}
+                >
+                  {eventData[key as EventKey].title}
+
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
